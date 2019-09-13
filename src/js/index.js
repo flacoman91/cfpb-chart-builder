@@ -2,6 +2,7 @@ import createChartDir from './charts';
 import documentReady from './utils/document-ready';
 import fetchMapShapes from './utils/fetch-map-shapes';
 import getData from './utils/get-data';
+import TileMap from './charts/TileMap';
 
 class Chart {
 
@@ -147,5 +148,6 @@ documentReady( createCharts );
 
 export {
   createChart,
-  createCharts
+  createCharts,
+  TileMap
 };
