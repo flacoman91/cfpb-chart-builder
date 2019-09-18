@@ -93,7 +93,7 @@ class TileMap {
             return '<div class="highcharts-data-label-state-abbr">' +
                    this.point.name +
                    '<br /><span class="highcharts-data-label-state-value">' +
-                   this.point.value + '%</span></div>';
+                   this.point.value.toLocaleString() + '</span></div>';
           },
           useHTML: true
         },
