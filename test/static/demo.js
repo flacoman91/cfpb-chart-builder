@@ -5,28 +5,18 @@ import { createChart } from '../../src/js/index';
 const container = document.getElementById( 'update-demo' );
 const mapContainer = document.getElementById( 'map' );
 
-const chart = createChart( {
-  el: container,
-  source: 'mortgage-performance/time-series/30-89/national',
-  type: 'line-comparison',
-  metadata: 'pct30'
-} );
+// const chart = createChart( {
+//   el: container,
+//   source: 'mortgage-performance/time-series/30-89/national',
+//   type: 'line-comparison',
+//   metadata: 'pct30'
+// } );
 
-const map = createChart( {
-  el: mapContainer,
-  source: 'mortgage-performance/map-data/30-89/metros/2009-01',
-  type: 'geo-map',
-  metadata: 'metros',
-  color: 'blue',
-  tooltipFormatter: point => `<dl>
-    ${ point.name ? point.name : `<dt>${ point.name }</dt>` }
-    <dd>${ point.value > 0 ? `${ point.value }%` : 'Insufficient data for this area' }</dd>
-  </dl>`
-} );
+
 
 // Test chart updating.
-const testChartUpdateBtn = document.querySelector( '#test-chart-update' );
-testChartUpdateBtn.addEventListener( 'click', testChartUpdate );
+// const testChartUpdateBtn = document.querySelector( '#test-chart-update' );
+// testChartUpdateBtn.addEventListener( 'click', testChartUpdate );
 
 function testChartUpdate() {
   testChartUpdateBtn.setAttribute( 'disabled', '' );

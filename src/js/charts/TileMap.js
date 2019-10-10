@@ -11,6 +11,11 @@ accessibility( Highcharts );
  */
 function _drawLegend( chart ) {
 
+  console.log(chart.options.series);
+  const d = chart.options.series[0].data.map(o=>o.value);
+  const bins = getTileMapColor.getBins(d);
+  console.log('legend BINZ', bins);
+
   /**
    * @param {string} color hex color code.
    * @returns {Object} Return a hash of box fill and stroke styles.
@@ -45,18 +50,31 @@ function _drawLegend( chart ) {
     .add( legend );
   chart.renderer
     .rect( 10, 117, 15, 15 )
-    .attr( _boxStyle( getTileMapColor.pacific20 ) )
+    .attr( _boxStyle( getTileMapColor.gray80 ) )
     .add( legend );
   chart.renderer
     .rect( 10, 140, 15, 15 )
+    .attr( _boxStyle( getTileMapColor.pacific20 ) )
+    .add( legend );
+
+  chart.renderer
+    .rect( 10, 163, 15, 15 )
     .attr( _boxStyle( getTileMapColor.pacific50 ) )
     .add( legend );
 
-  chart.renderer.text( '16% or greater', 32, 61 ).add( legend );
-  chart.renderer.text( '6% to 15%', 32, 84 ).add( legend );
-  chart.renderer.text( '-5% to 5%', 32, 107 ).add( legend );
-  chart.renderer.text( '-15% to -6%', 32, 130 ).add( legend );
-  chart.renderer.text( '-16% or less', 32, 153 ).add( legend );
+  chart.renderer
+    .rect( 10, 186, 15, 15 )
+    .attr( _boxStyle( '#fff' ) )
+    .add( legend );
+
+  // 88
+  chart.renderer.text( '>' + bins[5].min, 32, 61 ).add( legend );
+  chart.renderer.text( '>' + bins[4].min, 32, 84 ).add( legend );
+  chart.renderer.text( '>' + bins[3].min, 32, 107 ).add( legend );
+  chart.renderer.text( '>' + bins[2].min, 32, 130 ).add( legend );
+  chart.renderer.text( '>' + bins[1].min, 32, 153 ).add( legend );
+  chart.renderer.text( '>' + bins[0].min, 32, 176 ).add( legend );
+  chart.renderer.text( bins[0].min, 32, 199 ).add( legend );
 
 }
 
@@ -68,9 +86,14 @@ Highcharts.setOptions( {
 
 class TileMap {
   constructor( { el, description, data, metadata, title } ) {
+    console.log('tilemap constructor');
+    console.log(data);
+    const bins = getTileMapColor.getBins(data);
+    console.log(bins);
     data = processMapData( data[0], metadata );
 
     const options = {
+      bins: bins,
       chart: {
         marginTop: 150,
         styledMode: true

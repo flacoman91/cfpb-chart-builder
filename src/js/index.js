@@ -1,8 +1,8 @@
+import TileMap from './charts/TileMap';
 import createChartDir from './charts';
 import documentReady from './utils/document-ready';
 import fetchMapShapes from './utils/fetch-map-shapes';
 import getData from './utils/get-data';
-import TileMap from './charts/TileMap';
 
 class Chart {
 

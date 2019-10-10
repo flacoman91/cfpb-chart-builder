@@ -207,9 +207,16 @@ function processMapData( data ) {
     return Boolean( row.name );
   } );
 
+  const bins = getTileMapColor.getBins( data.map( o =>Math.round( Math.abs(parseFloat( o.value ) ) )) );
+  console.log('PS JSON pARSE FLOAT');
+  console.log(data.map( o => Math.round( parseFloat( o.value ) ) ));
+  console.log('hello?')
+
+  console.log(bins);
+
   data = data.map( function( obj, i ) {
     const state = getTileMapState[obj.name];
-    const value = Math.round( obj.value );
+    const value = Math.round( Math.abs(obj.value));
     const tooltip = state.abbr + ' ' +
                     ( value < 0 ? 'decreased' : 'increased' ) +
                     ' by ' + Math.abs( value ) + '%';
@@ -218,7 +225,7 @@ function processMapData( data ) {
       path: state.path,
       value: value,
       tooltip: tooltip,
-      color: getTileMapColor.getColorByValue( value )
+      color: getTileMapColor.getColorByValue( value, bins )
     };
   } );
 
