@@ -47,7 +47,7 @@ function getColorByValue( value, bins ) {
     return '#fff';
   }
 
-  const colors = [ pacific50, pacific20, gray80, gray5, green20 ];
+  const colors = [ pacific50, pacific20, gray80, green20, green50 ];
   let color = '#fff';
   for ( let i = 0; i < colors.length; i++ ) {
     if ( value > bins[ i ].min ) {

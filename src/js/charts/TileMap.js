@@ -46,15 +46,15 @@ function _drawLegend( chart ) {
     .add( legend );
   chart.renderer
     .rect( 10, 94, 15, 15 )
-    .attr( _boxStyle( getTileMapColor.gray5 ) )
-    .add( legend );
-  chart.renderer
-    .rect( 10, 117, 15, 15 )
     .attr( _boxStyle( getTileMapColor.gray80 ) )
     .add( legend );
   chart.renderer
-    .rect( 10, 140, 15, 15 )
+    .rect( 10, 117, 15, 15 )
     .attr( _boxStyle( getTileMapColor.pacific20 ) )
+    .add( legend );
+  chart.renderer
+    .rect( 10, 140, 15, 15 )
+    .attr( _boxStyle( getTileMapColor.pacific50 ) )
     .add( legend );
 
   // chart.renderer
