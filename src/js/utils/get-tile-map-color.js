@@ -19,7 +19,7 @@ function getMax( data ) {
  * @returns {[]|Array}
  */
 function getBins( data ) {
-  const binCount = 6;
+  const binCount = 5;
   const max = getMax( data );
   const min = 0;
 
@@ -47,7 +47,7 @@ function getColorByValue( value, bins ) {
     return '#fff';
   }
 
-  const colors = [ pacific50, pacific20, gray80, gray5, green20, green50 ];
+  const colors = [ pacific50, pacific20, gray80, gray5, green20 ];
   let color = '#fff';
   for ( let i = 0; i < colors.length; i++ ) {
     if ( value > bins[ i ].min ) {

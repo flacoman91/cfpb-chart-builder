@@ -57,24 +57,34 @@ function _drawLegend( chart ) {
     .attr( _boxStyle( getTileMapColor.pacific20 ) )
     .add( legend );
 
-  chart.renderer
-    .rect( 10, 163, 15, 15 )
-    .attr( _boxStyle( getTileMapColor.pacific50 ) )
-    .add( legend );
+  // chart.renderer
+  //   .rect( 10, 163, 15, 15 )
+  //   .attr( _boxStyle( getTileMapColor.pacific50 ) )
+  //   .add( legend );
 
   chart.renderer
-    .rect( 10, 186, 15, 15 )
+    .rect( 10, 163, 15, 15 )
     .attr( _boxStyle( '#fff' ) )
     .add( legend );
 
-  // 88
-  chart.renderer.text( '>' + bins[5].min, 32, 61 ).add( legend );
-  chart.renderer.text( '>' + bins[4].min, 32, 84 ).add( legend );
-  chart.renderer.text( '>' + bins[3].min, 32, 107 ).add( legend );
-  chart.renderer.text( '>' + bins[2].min, 32, 130 ).add( legend );
-  chart.renderer.text( '>' + bins[1].min, 32, 153 ).add( legend );
-  chart.renderer.text( '>' + bins[0].min, 32, 176 ).add( legend );
-  chart.renderer.text( bins[0].min, 32, 199 ).add( legend );
+  // 6 bins
+  // chart.renderer.text( '>' + bins[5].min, 32, 61 ).add( legend );
+  // chart.renderer.text( '>' + bins[4].min, 32, 84 ).add( legend );
+  // chart.renderer.text( '>' + bins[3].min, 32, 107 ).add( legend );
+  // chart.renderer.text( '>' + bins[2].min, 32, 130 ).add( legend );
+  // chart.renderer.text( '>' + bins[1].min, 32, 153 ).add( legend );
+  // chart.renderer.text( '>' + bins[0].min, 32, 176 ).add( legend );
+  // chart.renderer.text( bins[0].min, 32, 199 ).add( legend );
+
+  // 5 bins
+  chart.renderer.text( '>' + bins[4].min, 32, 61 ).add( legend );
+  chart.renderer.text( '>' + bins[3].min, 32, 84 ).add( legend );
+  chart.renderer.text( '>' + bins[2].min, 32, 107 ).add( legend );
+  chart.renderer.text( '>' + bins[1].min, 32, 130 ).add( legend );
+  chart.renderer.text( '>' + bins[0].min, 32, 153 ).add( legend );
+  //chart.renderer.text( '>' + bins[0].min, 32, 176 ).add( legend );
+  chart.renderer.text( bins[0].min, 32, 176 ).add( legend );
+
 
 }
 
