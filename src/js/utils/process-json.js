@@ -208,12 +208,6 @@ function processMapData( data ) {
   } );
 
   const bins = getTileMapColor.getBins( data.map( o =>Math.round( Math.abs(parseFloat( o.value ) ) )) );
-  console.log('PS JSON pARSE FLOAT');
-  console.log(data.map( o => Math.round( parseFloat( o.value ) ) ));
-  console.log('hello?')
-
-  console.log(bins);
-
   data = data.map( function( obj, i ) {
     const state = getTileMapState[obj.name];
     const value = Math.round( Math.abs(obj.value));
