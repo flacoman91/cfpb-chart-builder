@@ -8,6 +8,12 @@ class Chart {
 
   constructor( chartOptions ) {
     this.chartOptions = chartOptions;
+
+    // early exit if no source supplied
+    if ( !chartOptions.source ) {
+      return;
+    }
+
     getData( chartOptions.source ).then( data => {
       this.chartOptions.data = data;
       this.draw( this.chartOptions );
@@ -63,6 +69,10 @@ class Chart {
       // Otherwise fetch the data and redraw once it arrives
       this.highchart.chart.hideLoading();
 
+      // early exit if no source supplied
+      if ( !this.chartOptions.source ) {
+        return;
+      }
       getData( this.chartOptions.source ).then( data => {
         this.chartOptions.data = data;
 
