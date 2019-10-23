@@ -10,11 +10,8 @@ accessibility( Highcharts );
  * @param {Object} chart A highchart chart.
  */
 function _drawLegend( chart ) {
-
-  console.log(chart.options.series);
   const d = chart.options.series[0].data.map(o=>o.value);
   const bins = getTileMapColor.getBins(d);
-  console.log('legend BINZ', bins);
 
   /**
    * @param {string} color hex color code.
@@ -96,10 +93,7 @@ Highcharts.setOptions( {
 
 class TileMap {
   constructor( { el, description, data, metadata, title } ) {
-    console.log('tilemap constructor');
-    console.log(data);
     const bins = getTileMapColor.getBins(data);
-    console.log(bins);
     data = processMapData( data[0], metadata );
 
     const options = {
