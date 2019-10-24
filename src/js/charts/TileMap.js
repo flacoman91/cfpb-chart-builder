@@ -21,7 +21,7 @@ function _drawLegend( chart ) {
   function _boxStyle( color ) {
     return {
       'stroke-width': 1,
-      'stroke': getTileMapColor.gray80,
+      'stroke': '#75787b',
       'fill': color
     };
   }
@@ -90,8 +90,7 @@ Highcharts.setOptions( {
 class TileMap {
   constructor( { el, description, data, title, colors } ) {
     const bins = getTileMapColor.getBins(data);
-    const { pacific50, pacific20, gray80, green20, green50 } = getTileMapColor;
-    colors = colors ? colors : [ pacific50, pacific20, gray80, green20, green50 ];
+    colors = colors ? colors : [ '#96c4ed', '#d6e8fa', '#75787b', '#e2efd8', '#bae0a2' ];
     data = processMapData( data[0], colors );
 
     const options = {

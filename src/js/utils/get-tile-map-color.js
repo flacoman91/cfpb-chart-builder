@@ -1,10 +1,3 @@
-const green50 = '#bae0a2';
-const green20 = '#e2efd8';
-const gray80 = '#75787b';
-const gray5 = '#f7f8f9';
-const pacific20 = '#d6e8fa';
-const pacific50 = '#96c4ed';
-
 /**
  * helper function to get max value
  * @param data array of data
@@ -39,7 +32,8 @@ function getBins( data ) {
 /**
  * Returns color given a data value.
  * @param   {number} value A numerical data value.
- * @param   {number} value A numerical data value.
+ * @param   {array} bins different buckets for values.
+ * @param   {array} colors contains the input colors for the tile map
  * @returns {string} A color hex string.
  */
 function getColorByValue( value, bins, colors ) {
@@ -58,12 +52,6 @@ function getColorByValue( value, bins, colors ) {
 }
 
 export default {
-  getBins: getBins,
-  getColorByValue: getColorByValue,
-  green50: green50,
-  green20: green20,
-  gray80: gray80,
-  gray5: gray5,
-  pacific20: pacific20,
-  pacific50: pacific50
+  getBins,
+  getColorByValue
 };
