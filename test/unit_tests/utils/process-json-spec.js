@@ -9,7 +9,7 @@ describe( 'process-json', () => {
   const getProjectedDate = processJSON.getProjectedDate;
   const getProjectedTimestamp = processJSON.getProjectedTimestamp;
 
-  let data;
+  let data, colors;
   let testData;
 
   describe( 'getProjectedDate', () => {
@@ -205,7 +205,8 @@ describe( 'process-json', () => {
           value: '70.41'
         }
       ];
-      testData = map( data );
+      colors = [ 'red', 'yellow', 'blue', 'green', 'orange' ];
+      testData = map( data, colors );
     } );
 
     it( 'should get the correct path for a state', () => {

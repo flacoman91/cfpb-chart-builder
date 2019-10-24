@@ -196,7 +196,7 @@ function getProjectedDate( timestamp ) {
  * @param {Object} data - Data to process.
  * @returns {Object} The processed data.
  */
-function processMapData( data ) {
+function processMapData( data, colors ) {
 
   if ( typeof data !== 'object' ) {
     return data;
@@ -207,7 +207,7 @@ function processMapData( data ) {
     return Boolean( row.name );
   } );
 
-  const bins = getTileMapColor.getBins( data.map( o =>Math.round( Math.abs(parseFloat( o.value ) ) )) );
+  const bins = getTileMapColor.getBins( data.map( o => Math.round( Math.abs(parseFloat( o.value ) ) ) ) );
   data = data.map( function( obj, i ) {
     const state = getTileMapState[obj.name];
     const value = Math.round( Math.abs(obj.value));
@@ -219,7 +219,7 @@ function processMapData( data ) {
       path: state.path,
       value: value,
       tooltip: tooltip,
-      color: getTileMapColor.getColorByValue( value, bins )
+      color: getTileMapColor.getColorByValue( value, bins, colors )
     };
   } );
 

@@ -11,6 +11,7 @@ accessibility( Highcharts );
  */
 function _drawLegend( chart ) {
   const d = chart.options.series[0].data.map(o=>o.value);
+  const colors = chart.options.colors;
   const bins = getTileMapColor.getBins(d);
 
   /**
@@ -35,29 +36,24 @@ function _drawLegend( chart ) {
 
   chart.renderer
     .rect( 10, 48, 15, 15 )
-    .attr( _boxStyle( getTileMapColor.green50 ) )
+    .attr( _boxStyle( colors[4] ) )
     .add( legend );
   chart.renderer
     .rect( 10, 71, 15, 15 )
-    .attr( _boxStyle( getTileMapColor.green20 ) )
+    .attr( _boxStyle( colors[3] ) )
     .add( legend );
   chart.renderer
     .rect( 10, 94, 15, 15 )
-    .attr( _boxStyle( getTileMapColor.gray80 ) )
+    .attr( _boxStyle( colors[2] ) )
     .add( legend );
   chart.renderer
     .rect( 10, 117, 15, 15 )
-    .attr( _boxStyle( getTileMapColor.pacific20 ) )
+    .attr( _boxStyle( colors[1] ) )
     .add( legend );
   chart.renderer
     .rect( 10, 140, 15, 15 )
-    .attr( _boxStyle( getTileMapColor.pacific50 ) )
+    .attr( _boxStyle( colors[0] ) )
     .add( legend );
-
-  // chart.renderer
-  //   .rect( 10, 163, 15, 15 )
-  //   .attr( _boxStyle( getTileMapColor.pacific50 ) )
-  //   .add( legend );
 
   chart.renderer
     .rect( 10, 163, 15, 15 )
@@ -92,9 +88,11 @@ Highcharts.setOptions( {
 } );
 
 class TileMap {
-  constructor( { el, description, data, metadata, title } ) {
+  constructor( { el, description, data, title, colors } ) {
     const bins = getTileMapColor.getBins(data);
-    data = processMapData( data[0], metadata );
+    const { pacific50, pacific20, gray80, green20, green50 } = getTileMapColor;
+    colors = colors ? colors : [ pacific50, pacific20, gray80, green20, green50 ];
+    data = processMapData( data[0], colors );
 
     const options = {
       bins: bins,
@@ -102,6 +100,7 @@ class TileMap {
         marginTop: 150,
         styledMode: true
       },
+      colors: colors,
       title: false,
       description: description,
       credits: false,

@@ -39,15 +39,14 @@ function getBins( data ) {
 /**
  * Returns color given a data value.
  * @param   {number} value A numerical data value.
+ * @param   {number} value A numerical data value.
  * @returns {string} A color hex string.
  */
-function getColorByValue( value, bins ) {
-
+function getColorByValue( value, bins, colors ) {
   if ( parseInt( value, 10 ) === 0 ) {
     return '#fff';
   }
 
-  const colors = [ pacific50, pacific20, gray80, green20, green50 ];
   let color = '#fff';
   for ( let i = 0; i < colors.length; i++ ) {
     if ( value > bins[ i ].min ) {
@@ -56,20 +55,6 @@ function getColorByValue( value, bins ) {
   }
 
   return color;
-
-  // if ( value < -15 ) {
-  //   return pacific50;
-  // }
-  // if ( value < -5 ) {
-  //   return pacific20;
-  // }
-  // if ( value < 6 ) {
-  //   return gray5;
-  // }
-  // if ( value < 16 ) {
-  //   return green20;
-  // }
-  // return green50;
 }
 
 export default {
