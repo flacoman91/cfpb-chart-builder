@@ -27,55 +27,60 @@ function _drawLegend( chart ) {
   }
 
   // args: (str, x, y, shape, anchorX, anchorY, useHTML, baseline, className)
-  const labelTx = 'Year-over-year change (rounded to the nearest whole number)';
+  const labelTx = 'Map shading: Complaints';
   chart.renderer
     .label( labelTx, 5, 5, null, null, null, true, false, 'label__tile-map' )
     .add();
 
   const legend = chart.renderer.g( 'legend__tile-map ' ).add();
 
-  chart.renderer
-    .rect( 10, 48, 15, 15 )
-    .attr( _boxStyle( colors[4] ) )
-    .add( legend );
-  chart.renderer
-    .rect( 10, 71, 15, 15 )
-    .attr( _boxStyle( colors[3] ) )
-    .add( legend );
-  chart.renderer
-    .rect( 10, 94, 15, 15 )
-    .attr( _boxStyle( colors[2] ) )
-    .add( legend );
-  chart.renderer
-    .rect( 10, 117, 15, 15 )
-    .attr( _boxStyle( colors[1] ) )
-    .add( legend );
-  chart.renderer
-    .rect( 10, 140, 15, 15 )
-    .attr( _boxStyle( colors[0] ) )
-    .add( legend );
+  const g1 = chart.renderer.g( 'g1' ).translate(0,50).add(legend);
+  const g2 = chart.renderer.g( 'g2' ).translate(70,50).add(legend);
+  const g3 = chart.renderer.g( 'g3' ).translate(140,50).add(legend);
+  const g4 = chart.renderer.g( 'g4' ).translate(210,50).add(legend);
+  const g5 = chart.renderer.g( 'g5' ).translate(280,50).add(legend);
 
   chart.renderer
-    .rect( 10, 163, 15, 15 )
+    .rect( 0, 0, 65, 15 )
+    .attr( _boxStyle( colors[4] ) )
+    .add( g1 );
+  chart.renderer
+    .text( '>' + bins[4].min, 0, 14 )
+    .add( g1 );
+
+  chart.renderer
+    .rect( 0, 0, 65, 15 )
+    .attr( _boxStyle( colors[3] ) )
+    .add( g2 );
+  chart.renderer
+    .text( '>' + bins[3].min, 0, 14 )
+    .add( g2 );
+
+  chart.renderer
+    .rect( 0, 0, 65, 15 )
+    .attr( _boxStyle( colors[2] ) )
+    .add( g3 );
+  chart.renderer.text( '>' + bins[2].min, 0, 14 ).add( g3 );
+
+
+  chart.renderer
+    .rect( 0, 0, 65, 15 )
+    .attr( _boxStyle( colors[1] ) )
+    .add( g4 );
+  chart.renderer.text( '>' + bins[1].min, 0, 14 ).add( g4 );
+
+  chart.renderer
+    .rect( 0, 0, 65, 15 )
+    .attr( _boxStyle( colors[0] ) )
+    .add( g5 );
+  chart.renderer
+    .text( '>' + bins[0].min, 0, 14 )
+    .add( g5 );
+
+  chart.renderer
+    .rect( 10, 163, 60, 15 )
     .attr( _boxStyle( '#fff' ) )
     .add( legend );
-
-  // 6 bins
-  // chart.renderer.text( '>' + bins[5].min, 32, 61 ).add( legend );
-  // chart.renderer.text( '>' + bins[4].min, 32, 84 ).add( legend );
-  // chart.renderer.text( '>' + bins[3].min, 32, 107 ).add( legend );
-  // chart.renderer.text( '>' + bins[2].min, 32, 130 ).add( legend );
-  // chart.renderer.text( '>' + bins[1].min, 32, 153 ).add( legend );
-  // chart.renderer.text( '>' + bins[0].min, 32, 176 ).add( legend );
-  // chart.renderer.text( bins[0].min, 32, 199 ).add( legend );
-
-  // 5 bins
-  chart.renderer.text( '>' + bins[4].min, 32, 61 ).add( legend );
-  chart.renderer.text( '>' + bins[3].min, 32, 84 ).add( legend );
-  chart.renderer.text( '>' + bins[2].min, 32, 107 ).add( legend );
-  chart.renderer.text( '>' + bins[1].min, 32, 130 ).add( legend );
-  chart.renderer.text( '>' + bins[0].min, 32, 153 ).add( legend );
-  //chart.renderer.text( '>' + bins[0].min, 32, 176 ).add( legend );
   chart.renderer.text( bins[0].min, 32, 176 ).add( legend );
 
 
@@ -96,7 +101,7 @@ class TileMap {
     const options = {
       bins: bins,
       chart: {
-        marginTop: 150,
+        marginTop: 20,
         styledMode: true
       },
       colors: colors,
