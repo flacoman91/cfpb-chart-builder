@@ -85,7 +85,14 @@ const demoTileData = [ [ { 'name': 'CA', 'value': 189568 }, {
 const chart = new TileMap( {
   el: demoTileMap,
   data: demoTileData,
-  colors: [ 'red', 'blue', 'green', 'yellow', 'orange' ]
+  colors: [
+    'rgba(247, 248, 249, 0.5)',
+    'rgba(212, 231, 230, 0.5)',
+    'rgba(180, 210, 209, 0.5)',
+    'rgba(137, 182, 181, 0.5)',
+    'rgba(86, 149, 148, 0.5)',
+    'rgba(37, 116, 115, 0.5)'
+  ]
 } );
 
 

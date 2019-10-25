@@ -12,7 +12,7 @@ function getMax( data ) {
  * @returns {[]|Array}
  */
 function getBins( data ) {
-  const binCount = 5;
+  const binCount = 6;
   const max = getMax( data );
   const min = 0;
 

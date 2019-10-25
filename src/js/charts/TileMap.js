@@ -32,57 +32,72 @@ function _drawLegend( chart ) {
     .label( labelTx, 5, 5, null, null, null, true, false, 'label__tile-map' )
     .add();
 
-  const legend = chart.renderer.g( 'legend__tile-map ' ).add();
+  const legend = chart.renderer.g( 'legend__tile-map' )
+    .translate(10, 80)
+    .add();
+  const g1 = chart.renderer.g( 'g1' ).translate(0,0).add(legend);
+  const g2 = chart.renderer.g( 'g2' ).translate(70,0).add(legend);
+  const g3 = chart.renderer.g( 'g3' ).translate(140,0).add(legend);
+  const g4 = chart.renderer.g( 'g4' ).translate(210,0).add(legend);
+  const g5 = chart.renderer.g( 'g5' ).translate(280,0).add(legend);
+  const g6 = chart.renderer.g( 'g6' ).translate(350,0).add(legend);
+  const g7 = chart.renderer.g( 'g7' ).translate(420,0).add(legend);
 
-  const g1 = chart.renderer.g( 'g1' ).translate(0,50).add(legend);
-  const g2 = chart.renderer.g( 'g2' ).translate(70,50).add(legend);
-  const g3 = chart.renderer.g( 'g3' ).translate(140,50).add(legend);
-  const g4 = chart.renderer.g( 'g4' ).translate(210,50).add(legend);
-  const g5 = chart.renderer.g( 'g5' ).translate(280,50).add(legend);
+  chart.renderer
+    .rect( 0, 0, 65, 15 )
+    .attr( _boxStyle( colors[5] ) )
+    .add( g7 );
+  chart.renderer
+    .text( '>' + bins[5].min, 0, 14 )
+    .add( g7 );
 
   chart.renderer
     .rect( 0, 0, 65, 15 )
     .attr( _boxStyle( colors[4] ) )
-    .add( g1 );
+    .add( g6 );
   chart.renderer
     .text( '>' + bins[4].min, 0, 14 )
-    .add( g1 );
+    .add( g6 );
 
   chart.renderer
     .rect( 0, 0, 65, 15 )
     .attr( _boxStyle( colors[3] ) )
-    .add( g2 );
+    .add( g5 );
   chart.renderer
     .text( '>' + bins[3].min, 0, 14 )
-    .add( g2 );
+    .add( g5 );
 
   chart.renderer
     .rect( 0, 0, 65, 15 )
     .attr( _boxStyle( colors[2] ) )
-    .add( g3 );
-  chart.renderer.text( '>' + bins[2].min, 0, 14 ).add( g3 );
-
+    .add( g4 );
+  chart.renderer
+    .text( '>' + bins[2].min, 0, 14 )
+    .add( g4 );
 
   chart.renderer
     .rect( 0, 0, 65, 15 )
     .attr( _boxStyle( colors[1] ) )
-    .add( g4 );
-  chart.renderer.text( '>' + bins[1].min, 0, 14 ).add( g4 );
+    .add( g3 );
+  chart.renderer
+    .text( '>' + bins[1].min, 0, 14 )
+    .add( g3 );
 
   chart.renderer
     .rect( 0, 0, 65, 15 )
     .attr( _boxStyle( colors[0] ) )
-    .add( g5 );
+    .add( g2 );
   chart.renderer
     .text( '>' + bins[0].min, 0, 14 )
-    .add( g5 );
+    .add( g2 );
 
   chart.renderer
-    .rect( 10, 163, 60, 15 )
+    .rect( 0, 0, 65, 15 )
     .attr( _boxStyle( '#fff' ) )
-    .add( legend );
-  chart.renderer.text( bins[0].min, 32, 176 ).add( legend );
-
+    .add( g1 );
+  chart.renderer
+    .text( 'N/A', 0, 14 )
+    .add( g1 );
 
 }
 
@@ -101,7 +116,7 @@ class TileMap {
     const options = {
       bins: bins,
       chart: {
-        marginTop: 20,
+        marginTop: 0,
         styledMode: true
       },
       colors: colors,
