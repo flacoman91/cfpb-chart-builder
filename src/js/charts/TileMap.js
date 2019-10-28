@@ -135,10 +135,11 @@ class TileMap {
         dataLabels: {
           enabled: true,
           formatter: function() {
-            return '<div class="highcharts-data-label-state-abbr">' +
-                   this.point.name +
-                   '<br /><span class="highcharts-data-label-state-value">' +
-                   this.point.value.toLocaleString() + '</span></div>';
+            return '<div class="highcharts-data-label-state">' +
+              '<span class="abbr">' + this.point.name + '</span>' +
+                   '<br /><span class="value">' +
+                   this.point.value.toLocaleString() + '</span>' +
+              '</div>';
           },
           useHTML: true
         },
