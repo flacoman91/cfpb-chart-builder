@@ -1,8 +1,6 @@
 /* TODO: Investigate whether responsive styles can be remove here and handled
          via class set in JS, like how the other chart types work. */
 .cfpb-chart[data-chart-type="tile_map"] {
-  height: 630px;
-
   // Ignore mouse events on text on labels so hover on square tile works.
   .highcharts-label {
     pointer-events: none;
@@ -69,6 +67,47 @@
           margin-top: -2px;
           font-size: 9px;
         } );
+      }
+    }
+  }
+
+  .highcharts-label-box {
+    display: none;
+  }
+
+  .highcharts-tooltip {
+    min-width: 200px;
+
+    span {
+      color: @white;
+      background-color: @black;
+      padding: 5px;
+      width: 320px;
+      div {
+        p {
+          margin: 5px;
+          white-space: normal;
+
+          &.u-float-left {
+            width: 150px;
+            float: left;
+          }
+
+          &.u-right {
+            width: 150px;
+            //float: right;
+          }
+        }
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .row {
+        border-top: solid 1px @dark-gray;
+        margin-top: 5px;
+        padding-top: 5px;
       }
     }
   }

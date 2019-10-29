@@ -215,6 +215,8 @@ function processMapData( data, colors ) {
                     ( value < 0 ? 'decreased' : 'increased' ) +
                     ' by ' + Math.abs( value ) + '%';
     return {
+      abbr: state.abbr,
+      fullName: state.fullName,
       name: obj.name,
       path: state.path,
       value: value,

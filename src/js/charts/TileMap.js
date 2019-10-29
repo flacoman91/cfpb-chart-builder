@@ -13,6 +13,7 @@ function _drawLegend( chart ) {
   const d = chart.options.series[0].data.map(o=>o.value);
   const colors = chart.options.colors;
   const bins = getTileMapColor.getBins(d);
+  const marginTop = chart.margin[0] || 0;
 
   /**
    * @param {string} color hex color code.
@@ -33,7 +34,7 @@ function _drawLegend( chart ) {
     .add();
 
   const legend = chart.renderer.g( 'legend__tile-map' )
-    .translate(10, 80)
+    .translate(10, marginTop)
     .add();
   const g1 = chart.renderer.g( 'g1' ).translate(0,0).add(legend);
   const g2 = chart.renderer.g( 'g2' ).translate(70,0).add(legend);
@@ -116,7 +117,7 @@ class TileMap {
     const options = {
       bins: bins,
       chart: {
-        marginTop: 0,
+        marginTop: 40,
         styledMode: true
       },
       colors: colors,
@@ -127,7 +128,25 @@ class TileMap {
         enabled: false
       },
       tooltip: {
-        enabled: false
+        className: 'tooltip',
+        enabled: true,
+        headerFormat: '',
+        pointFormatter: function() {
+          return '<div class="title">' + this.fullName + '</div>' +
+            '<div class="row u-clearfix">' +
+              '<p class="u-float-left">Complaints</p>' +
+              '<p class="u-right">' + this.value + '</p>' +
+            '</div>' +
+            '<div class="row u-clearfix">' +
+              '<p class="u-float-left">Product with highest complaint volume</p>' +
+              '<p class="u-right">Credit reporting, credit repair services, or other personal consumer reports</p>' +
+            '</div>' +
+            '<div class="row u-clearfix">' +
+              '<p class="u-float-left">Issue with highest complaint volume</p>' +
+              '<p class="u-right">Lorem Ipsum</p>' +
+            '</div>';
+        },
+        useHTML: true
       },
       series: [ {
         type: 'map',
