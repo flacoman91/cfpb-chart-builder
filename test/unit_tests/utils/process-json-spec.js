@@ -214,21 +214,6 @@ describe( 'process-json', () => {
       expect( testData[0].path )
         .toBe( 'M550,-337L633,-337,633,-253,550,-253,550,-337' );
     } );
-
-    it( 'should round values', () => {
-      expect( testData[0].name ).toBe( 'AL' );
-      expect( testData[0].value ).toBe( 143 );
-      expect( testData[1].name ).toBe( 'AK' );
-      expect( testData[1].value ).toBe( 92 );
-      expect( testData[2].name ).toBe( 'AZ' );
-      expect( testData[2].value ).toBe( 73 );
-    } );
-
-    it( 'should add the correct tooltip', () => {
-      expect( testData[0].name ).toBe( 'AL' );
-      expect( testData[0].tooltip ).toBe( 'AL increased by 143%' );
-    } );
-
   } );
 
   describe( 'processDelinquencies', () => {

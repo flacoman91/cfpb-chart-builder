@@ -210,18 +210,12 @@ function processMapData( data, colors ) {
   const bins = getTileMapColor.getBins( data.map( o => Math.round( Math.abs(parseFloat( o.value ) ) ) ) );
   data = data.map( function( obj, i ) {
     const state = getTileMapState[obj.name];
-    const value = Math.round( Math.abs(obj.value));
-    const tooltip = state.abbr + ' ' +
-                    ( value < 0 ? 'decreased' : 'increased' ) +
-                    ' by ' + Math.abs( value ) + '%';
     return {
+      ...obj,
       abbr: state.abbr,
       fullName: state.fullName,
-      name: obj.name,
       path: state.path,
-      value: value,
-      tooltip: tooltip,
-      color: getTileMapColor.getColorByValue( value, bins, colors )
+      color: getTileMapColor.getColorByValue( obj.value, bins, colors )
     };
   } );
 

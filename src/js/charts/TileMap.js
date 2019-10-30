@@ -14,6 +14,7 @@ function _drawLegend( chart ) {
   const colors = chart.options.colors;
   const bins = getTileMapColor.getBins(d);
   const marginTop = chart.margin[0] || 0;
+  const localize = chart.options.localize;
 
   /**
    * @param {string} color hex color code.
@@ -43,6 +44,15 @@ function _drawLegend( chart ) {
   const g5 = chart.renderer.g( 'g5' ).translate(280,0).add(legend);
   const g6 = chart.renderer.g( 'g6' ).translate(350,0).add(legend);
   const g7 = chart.renderer.g( 'g7' ).translate(420,0).add(legend);
+
+  if ( localize ) {
+    bins[5].min = bins[5].min.toLocaleString();
+    bins[4].min = bins[4].min.toLocaleString();
+    bins[3].min = bins[3].min.toLocaleString();
+    bins[2].min = bins[2].min.toLocaleString();
+    bins[1].min = bins[1].min.toLocaleString();
+    bins[0].min = bins[0].min.toLocaleString();
+  }
 
   chart.renderer
     .rect( 0, 0, 65, 15 )
@@ -109,13 +119,13 @@ Highcharts.setOptions( {
 } );
 
 class TileMap {
-  constructor( { el, description, data, title, colors } ) {
+  constructor( { el, description, data, title, colors, localize } ) {
     const bins = getTileMapColor.getBins(data);
     colors = colors ? colors : [ '#96c4ed', '#d6e8fa', '#75787b', '#e2efd8', '#bae0a2' ];
     data = processMapData( data[0], colors );
 
     const options = {
-      bins: bins,
+      bins,
       chart: {
         marginTop: 40,
         styledMode: true
@@ -127,24 +137,28 @@ class TileMap {
       legend: {
         enabled: false
       },
+      localize,
       tooltip: {
         className: 'tooltip',
         enabled: true,
         headerFormat: '',
         pointFormatter: function() {
+          const product = this.product ? '<div class="row u-clearfix">' +
+            '<p class="u-float-left">Product with highest complaint volume</p>' +
+            '<p class="u-right">' + this.product + '</p>' +
+            '</div>' : '';
+
+          const issue = this.issue ? '<div class="row u-clearfix">' +
+            '<p class="u-float-left">Issue with highest complaint volume</p>' +
+            '<p class="u-right">' + this.issue + '</p>' +
+            '</div>' : '';
+
+          const value = localize ? this.value.toLocaleString() : this.value;
           return '<div class="title">' + this.fullName + '</div>' +
             '<div class="row u-clearfix">' +
               '<p class="u-float-left">Complaints</p>' +
-              '<p class="u-right">' + this.value + '</p>' +
-            '</div>' +
-            '<div class="row u-clearfix">' +
-              '<p class="u-float-left">Product with highest complaint volume</p>' +
-              '<p class="u-right">Credit reporting, credit repair services, or other personal consumer reports</p>' +
-            '</div>' +
-            '<div class="row u-clearfix">' +
-              '<p class="u-float-left">Issue with highest complaint volume</p>' +
-              '<p class="u-right">Lorem Ipsum</p>' +
-            '</div>';
+              '<p class="u-right">' + value + '</p>' +
+            '</div>' + product + issue;
         },
         useHTML: true
       },
@@ -154,10 +168,11 @@ class TileMap {
         dataLabels: {
           enabled: true,
           formatter: function() {
+            const value = localize ? this.point.value.toLocaleString() : this.point.value;
             return '<div class="highcharts-data-label-state">' +
               '<span class="abbr">' + this.point.name + '</span>' +
-                   '<br /><span class="value">' +
-                   this.point.value.toLocaleString() + '</span>' +
+                   '<br />' +
+              '<span class="value">' + value + '</span>' +
               '</div>';
           },
           useHTML: true
