@@ -72,7 +72,14 @@ const chart = new TileMap( {
     'rgba(86, 149, 148, 0.5)',
     'rgba(37, 116, 115, 0.5)'
   ],
-  localize: true
+  localize: true,
+  events: {
+    // custom event handlers we can pass on
+    click: function (event) {
+      console.log(event)
+      console.log(this)
+    }
+  }
 } );
 
 

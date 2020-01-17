@@ -119,7 +119,7 @@ Highcharts.setOptions( {
 } );
 
 class TileMap {
-  constructor( { el, description, data, title, colors, localize } ) {
+  constructor( { el, description, data, title, colors, localize, events } ) {
     const bins = getTileMapColor.getBins(data);
     colors = colors ? colors : [ '#96c4ed', '#d6e8fa', '#75787b', '#e2efd8', '#bae0a2' ];
     data = processMapData( data[0], colors );
@@ -162,25 +162,33 @@ class TileMap {
         },
         useHTML: true
       },
+      plotOptions: {
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter: function() {
+              const value = localize ? this.point.value.toLocaleString() : this.point.value;
+              return '<div class="highcharts-data-label-state">' +
+                '<span class="abbr">' + this.point.name + '</span>' +
+                '<br />' +
+                '<span class="value">' + value + '</span>' +
+                '</div>';
+            },
+            useHTML: true
+          }
+        }
+      },
       series: [ {
         type: 'map',
         clip: false,
-        dataLabels: {
-          enabled: true,
-          formatter: function() {
-            const value = localize ? this.point.value.toLocaleString() : this.point.value;
-            return '<div class="highcharts-data-label-state">' +
-              '<span class="abbr">' + this.point.name + '</span>' +
-                   '<br />' +
-              '<span class="value">' + value + '</span>' +
-              '</div>';
-          },
-          useHTML: true
-        },
         name: title,
         data: data
       } ]
     };
+
+    if ( events ) {
+      options.plotOptions.series.events = events;
+    }
 
     return Highcharts.mapChart( el, options, _drawLegend );
   }
