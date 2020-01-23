@@ -168,7 +168,7 @@ class TileMap {
             enabled: true,
             formatter: function() {
               const value = localize ? this.point.value.toLocaleString() : this.point.value;
-              return '<div class="highcharts-data-label-state">' +
+              return '<div class="highcharts-data-label-state ' + this.point.className + '">' +
                 '<span class="abbr">' + this.point.name + '</span>' +
                 '<br />' +
                 '<span class="value">' + value + '</span>' +

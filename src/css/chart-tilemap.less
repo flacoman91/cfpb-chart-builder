@@ -31,7 +31,8 @@
   .highcharts-map-series .highcharts-point {
     stroke: @gray-80;
     &:hover,
-    &:focus {
+    &:focus,
+    &.selected{
       .u-point-hover-state();
     }
   }
@@ -55,6 +56,10 @@
     .highcharts-data-label-state {
       text-align: center;
       cursor: default;
+      &.deselected {
+        color: @gray
+      }
+
       .abbr {
         font-size: 16px;
       }

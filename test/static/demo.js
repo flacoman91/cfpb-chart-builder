@@ -7,10 +7,10 @@ const demoTileMap = document.getElementById( 'demo-tile-map' );
 
 const demoTileData = [
   [
-    { 'name': 'CA', 'value': 189568 },
-    { 'name': 'FL', 'value': 140149 },
-    { 'name': 'TX', 'value': 117748 },
-    { 'name': 'NY', 'value': 94447 },
+    { 'name': 'CA', 'value': 189568, className: 'selected' },
+    { 'name': 'FL', 'value': 140149, className: 'selected'  },
+    { 'name': 'TX', 'value': 117748, className: 'selected'  },
+    { 'name': 'NY', 'value': 94447, className: ''  },
     { 'name': 'GA', 'value': 73889 },
     { 'name': 'IL', 'value': 53633 },
     { 'name': 'NJ', 'value': 51244 },
@@ -23,7 +23,7 @@ const demoTileData = [
     { 'name': 'AZ', 'value': 29367 },
     { 'name': 'WA', 'value': 26115 },
     { 'name': 'MA', 'value': 24324 },
-    { 'name': 'TN', 'value': 22950 },
+    { 'name': 'TN', 'value': 22950, className: 'deselected' },
     { 'name': 'CO', 'value': 21837 },
     { 'name': 'SC', 'value': 20947 },
     { 'name': 'MO', 'value': 19843 },
