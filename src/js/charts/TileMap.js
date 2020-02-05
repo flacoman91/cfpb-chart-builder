@@ -177,7 +177,10 @@ class TileMap {
           dataLabels: {
             enabled: true,
             formatter: function() {
-              const value = localize ? this.point.value.toLocaleString() : this.point.value;
+              const valKey = this.point.displayValue ? 'displayValue' : 'value';
+
+              // are we using perCapita or value?
+              const value = localize ? this.point[valKey].toLocaleString() : this.point[valKey];
               return '<div class="highcharts-data-label-state ' + this.point.className + '">' +
                 '<span class="abbr">' + this.point.name + '</span>' +
                 '<br />' +
