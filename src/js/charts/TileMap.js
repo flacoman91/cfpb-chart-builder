@@ -10,7 +10,9 @@ accessibility( Highcharts );
  * @param {Object} chart A highchart chart.
  */
 function _drawLegend( chart ) {
-  const d = chart.options.series[0].data.map(o=>o.value);
+  // do we use the value or perCapita ?
+  const valKey = chart.options.series[0].data[0].displayValue ? 'displayValue' : 'value';
+  const d = chart.options.series[ 0 ].data.map( o => o[valKey] );
   const colors = chart.options.colors;
   const bins = getTileMapColor.getBins(d);
   const marginTop = chart.margin[0] || 0;
@@ -153,12 +155,23 @@ class TileMap {
             '<p class="u-right">' + this.issue + '</p>' +
             '</div>' : '';
 
-          const value = localize ? this.value.toLocaleString() : this.value;
+          // backwards compatibility for data without displayValue
+          const valKey = this.displayValue ? 'displayValue' : 'value'
+
+          const value = localize ? this[valKey].toLocaleString() : this[valKey];
+          const perCapita = this.perCapita ? '<div class="row u-clearfix">' +
+            '<p class="u-float-left">Per capita</p>' +
+            '<p class="u-right">' + this.perCapita + '</p>' +
+            '</div>' : '';
+
           return '<div class="title">' + this.fullName + '</div>' +
             '<div class="row u-clearfix">' +
               '<p class="u-float-left">Complaints</p>' +
               '<p class="u-right">' + value + '</p>' +
-            '</div>' + product + issue;
+            '</div>' +
+            perCapita +
+            product +
+            issue;
         },
         useHTML: true
       },
@@ -167,7 +180,10 @@ class TileMap {
           dataLabels: {
             enabled: true,
             formatter: function() {
-              const value = localize ? this.point.value.toLocaleString() : this.point.value;
+              const valKey = this.point.displayValue ? 'displayValue' : 'value';
+
+              // are we using perCapita or value?
+              const value = localize ? this.point[valKey].toLocaleString() : this.point[valKey];
               return '<div class="highcharts-data-label-state ' + this.point.className + '">' +
                 '<span class="abbr">' + this.point.name + '</span>' +
                 '<br />' +
