@@ -155,10 +155,7 @@ class TileMap {
             '<p class="u-right">' + this.issue + '</p>' +
             '</div>' : '';
 
-          // backwards compatibility for data without displayValue
-          const valKey = this.displayValue ? 'displayValue' : 'value'
-
-          const value = localize ? this[valKey].toLocaleString() : this[valKey];
+          const value = localize ? this.value.toLocaleString() : this.value;
           const perCapita = this.perCapita ? '<div class="row u-clearfix">' +
             '<p class="u-float-left">Per capita</p>' +
             '<p class="u-right">' + this.perCapita + '</p>' +
@@ -180,10 +177,7 @@ class TileMap {
           dataLabels: {
             enabled: true,
             formatter: function() {
-              const valKey = this.point.displayValue ? 'displayValue' : 'value';
-
-              // are we using perCapita or value?
-              const value = localize ? this.point[valKey].toLocaleString() : this.point[valKey];
+              const value = localize ? this.point.value.toLocaleString() : this.point.value;
               return '<div class="highcharts-data-label-state ' + this.point.className + '">' +
                 '<span class="abbr">' + this.point.name + '</span>' +
                 '<br />' +
