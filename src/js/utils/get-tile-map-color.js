@@ -23,7 +23,11 @@ function getBins( data ) {
   const step = ( max - min ) / binCount;
 
   for ( let i = 0, curr = min; i < binCount; i++, curr += step ) {
-    bins.push( { color: '#000000', index: i, min: Math.round( curr ) } );
+    bins.push( {
+      color: '#000000',
+      index: i,
+      min: max > 1 ? Math.round( curr ) : curr
+    } );
   }
 
   return bins;
@@ -37,10 +41,6 @@ function getBins( data ) {
  * @returns {string} A color hex string.
  */
 function getColorByValue( value, bins, colors ) {
-  if ( parseInt( value, 10 ) === 0 ) {
-    return '#fff';
-  }
-
   let color = '#fff';
   for ( let i = 0; i < colors.length; i++ ) {
     if ( value > bins[ i ].min ) {

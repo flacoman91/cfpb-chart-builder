@@ -207,7 +207,7 @@ function processMapData( data, colors ) {
     return Boolean( row.name );
   } );
 
-  const bins = getTileMapColor.getBins( data.map( o => Math.round( Math.abs(parseFloat( o.displayValue ) ) ) ) );
+  const bins = getTileMapColor.getBins( data.map( o => Math.abs(parseFloat( o.displayValue ) ) ) );
   data = data.map( function( obj, i ) {
     const state = getTileMapState[obj.name];
     return {
