@@ -61,7 +61,7 @@ function _drawLegend( chart ) {
     .attr( _boxStyle( colors[5] ) )
     .add( g7 );
   chart.renderer
-    .text( '>' + bins[5].min, 0, 14 )
+    .text( '>' + bins[5].min, 3, 14 )
     .add( g7 );
 
   chart.renderer
@@ -69,7 +69,7 @@ function _drawLegend( chart ) {
     .attr( _boxStyle( colors[4] ) )
     .add( g6 );
   chart.renderer
-    .text( '>' + bins[4].min, 0, 14 )
+    .text( '>' + bins[4].min, 3, 14 )
     .add( g6 );
 
   chart.renderer
@@ -77,7 +77,7 @@ function _drawLegend( chart ) {
     .attr( _boxStyle( colors[3] ) )
     .add( g5 );
   chart.renderer
-    .text( '>' + bins[3].min, 0, 14 )
+    .text( '>' + bins[3].min, 3, 14 )
     .add( g5 );
 
   chart.renderer
@@ -85,7 +85,7 @@ function _drawLegend( chart ) {
     .attr( _boxStyle( colors[2] ) )
     .add( g4 );
   chart.renderer
-    .text( '>' + bins[2].min, 0, 14 )
+    .text( '>' + bins[2].min, 3, 14 )
     .add( g4 );
 
   chart.renderer
@@ -93,7 +93,7 @@ function _drawLegend( chart ) {
     .attr( _boxStyle( colors[1] ) )
     .add( g3 );
   chart.renderer
-    .text( '>' + bins[1].min, 0, 14 )
+    .text( '>' + bins[1].min, 3, 14 )
     .add( g3 );
 
   chart.renderer
@@ -101,7 +101,7 @@ function _drawLegend( chart ) {
     .attr( _boxStyle( colors[0] ) )
     .add( g2 );
   chart.renderer
-    .text( '>' + bins[0].min, 0, 14 )
+    .text( '>' + bins[0].min, 3, 14 )
     .add( g2 );
 
   chart.renderer
@@ -109,7 +109,7 @@ function _drawLegend( chart ) {
     .attr( _boxStyle( '#fff' ) )
     .add( g1 );
   chart.renderer
-    .text( 'N/A', 0, 14 )
+    .text( 'N/A', 3, 14 )
     .add( g1 );
 
 }
