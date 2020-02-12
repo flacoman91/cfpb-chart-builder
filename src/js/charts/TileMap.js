@@ -57,7 +57,7 @@ function _drawLegend( chart ) {
   }
 
   chart.renderer
-    .rect( 0, 0, 65, 15 )
+    .rect( 0, 0, 65, 18 )
     .attr( _boxStyle( colors[5] ) )
     .add( g7 );
   chart.renderer
@@ -65,7 +65,7 @@ function _drawLegend( chart ) {
     .add( g7 );
 
   chart.renderer
-    .rect( 0, 0, 65, 15 )
+    .rect( 0, 0, 65, 18 )
     .attr( _boxStyle( colors[4] ) )
     .add( g6 );
   chart.renderer
@@ -73,7 +73,7 @@ function _drawLegend( chart ) {
     .add( g6 );
 
   chart.renderer
-    .rect( 0, 0, 65, 15 )
+    .rect( 0, 0, 65, 18 )
     .attr( _boxStyle( colors[3] ) )
     .add( g5 );
   chart.renderer
@@ -81,7 +81,7 @@ function _drawLegend( chart ) {
     .add( g5 );
 
   chart.renderer
-    .rect( 0, 0, 65, 15 )
+    .rect( 0, 0, 65, 18 )
     .attr( _boxStyle( colors[2] ) )
     .add( g4 );
   chart.renderer
@@ -89,7 +89,7 @@ function _drawLegend( chart ) {
     .add( g4 );
 
   chart.renderer
-    .rect( 0, 0, 65, 15 )
+    .rect( 0, 0, 65, 18 )
     .attr( _boxStyle( colors[1] ) )
     .add( g3 );
   chart.renderer
@@ -97,7 +97,7 @@ function _drawLegend( chart ) {
     .add( g3 );
 
   chart.renderer
-    .rect( 0, 0, 65, 15 )
+    .rect( 0, 0, 65, 18 )
     .attr( _boxStyle( colors[0] ) )
     .add( g2 );
   chart.renderer
@@ -105,7 +105,7 @@ function _drawLegend( chart ) {
     .add( g2 );
 
   chart.renderer
-    .rect( 0, 0, 65, 15 )
+    .rect( 0, 0, 65, 18 )
     .attr( _boxStyle( '#fff' ) )
     .add( g1 );
   chart.renderer
