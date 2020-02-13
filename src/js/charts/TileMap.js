@@ -121,7 +121,7 @@ Highcharts.setOptions( {
 } );
 
 class TileMap {
-  constructor( { el, description, data, title, colors, localize, events } ) {
+  constructor( { el, description, data, title, colors, localize, events, width } ) {
     const bins = getTileMapColor.getBins(data);
     colors = colors ? colors : [ '#96c4ed', '#d6e8fa', '#75787b', '#e2efd8', '#bae0a2' ];
     data = processMapData( data[0], colors );
@@ -201,6 +201,10 @@ class TileMap {
 
     if ( events ) {
       options.plotOptions.series.events = events;
+    }
+
+    if ( width ) {
+      options.chart.width = width;
     }
 
     return Highcharts.mapChart( el, options, _drawLegend );

@@ -32,9 +32,10 @@ const chart = new TileMap( {
       console.log(event)
       console.log(this)
     }
-  }
+  },
+  // exposing the width to pass into highcharts
+  width: 600
 } );
-
 
 // Test chart updating.
 // const testChartUpdateBtn = document.querySelector( '#test-chart-update' );
