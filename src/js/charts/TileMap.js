@@ -14,8 +14,8 @@ function _drawLegend( chart ) {
   const valKey = chart.options.series[0].data[0].displayValue ? 'displayValue' : 'value';
   const d = chart.options.series[ 0 ].data.map( o => o[valKey] );
   const colors = chart.options.colors;
-  const bins = getTileMapColor.getBins(d);
-  const marginTop = 45;
+  const bins = getTileMapColor.getBins( d );
+  const marginTop = 50;
   const localize = chart.options.localize;
 
   /**
@@ -31,20 +31,38 @@ function _drawLegend( chart ) {
   }
 
   // args: (str, x, y, shape, anchorX, anchorY, useHTML, baseline, className)
-  chart.renderer
-    .label( 'Key', 5, 0, null, null, null, true, false, 'label__tile-map' )
+
+  // title group
+  const legendText = chart.renderer.g( 'legend-title' )
+    .translate(5, 0)
     .add();
+
+  chart.renderer
+    .label( 'Key', 0, 0, null, null, null, true, false, 'legend-key' )
+    .add( legendText );
+
+  chart.renderer.path(['M', 0, 0, 'L', 490, 0])
+    .attr({
+      class: 'separator',
+      'stroke-width': 1,
+      stroke: 'gray'
+    })
+    .translate(0, 25)
+    .add(legendText);
+
   let legendTitle = chart.options.legend.legendTitle;
   legendTitle = legendTitle ? legendTitle : 'Complaints';
 
-  const labelTx = 'Map shading: <span class="type">'+ legendTitle + '</span>';
+  const labelTx = 'Map shading: <span class="type">' + legendTitle + '</span>';
   chart.renderer
-    .label( labelTx, 5, 20, null, null, null, true, false, 'label__tile-map' )
-    .add();
+    .label( labelTx, 0, 30, null, null, null, true, false, 'legend-description' )
+    .add(legendText);
 
+  // bar groups
   const legend = chart.renderer.g( 'legend__tile-map' )
     .translate(10, marginTop)
     .add();
+
   const g1 = chart.renderer.g( 'g1' ).translate(0,0).add(legend);
   const g2 = chart.renderer.g( 'g2' ).translate(70,0).add(legend);
   const g3 = chart.renderer.g( 'g3' ).translate(140,0).add(legend);
