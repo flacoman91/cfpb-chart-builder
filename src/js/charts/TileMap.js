@@ -15,7 +15,7 @@ function _drawLegend( chart ) {
   const d = chart.options.series[ 0 ].data.map( o => o[valKey] );
   const colors = chart.options.colors;
   const bins = getTileMapColor.getBins(d);
-  const marginTop = chart.margin[0] || 0;
+  const marginTop = 45;
   const localize = chart.options.localize;
 
   /**
@@ -31,9 +31,15 @@ function _drawLegend( chart ) {
   }
 
   // args: (str, x, y, shape, anchorX, anchorY, useHTML, baseline, className)
-  const labelTx = 'Map shading: Complaints';
   chart.renderer
-    .label( labelTx, 5, 5, null, null, null, true, false, 'label__tile-map' )
+    .label( 'Key', 5, 0, null, null, null, true, false, 'label__tile-map' )
+    .add();
+  let legendTitle = chart.options.legend.legendTitle;
+  legendTitle = legendTitle ? legendTitle : 'Complaints';
+
+  const labelTx = 'Map shading: <span class="type">'+ legendTitle + '</span>';
+  chart.renderer
+    .label( labelTx, 5, 20, null, null, null, true, false, 'label__tile-map' )
     .add();
 
   const legend = chart.renderer.g( 'legend__tile-map' )
@@ -121,7 +127,7 @@ Highcharts.setOptions( {
 } );
 
 class TileMap {
-  constructor( { el, description, data, title, colors, localize, events, width } ) {
+  constructor( { el, description, data, title, colors, localize, events, width, legendTitle } ) {
     const bins = getTileMapColor.getBins(data);
     colors = colors ? colors : [ '#96c4ed', '#d6e8fa', '#75787b', '#e2efd8', '#bae0a2' ];
     data = processMapData( data[0], colors );
@@ -199,12 +205,17 @@ class TileMap {
       } ]
     };
 
+    // our custom passing of information
     if ( events ) {
       options.plotOptions.series.events = events;
     }
 
     if ( width ) {
       options.chart.width = width;
+    }
+
+    if ( legendTitle ) {
+      options.legend.legendTitle = legendTitle;
     }
 
     return Highcharts.mapChart( el, options, _drawLegend );

@@ -25,6 +25,7 @@ const chart = new TileMap( {
     'rgba(86, 149, 148, 0.5)',
     'rgba(37, 116, 115, 0.5)'
   ],
+  legendTitle: 'Some Complaints',
   localize: true,
   events: {
     // custom event handlers we can pass on
