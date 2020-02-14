@@ -55,7 +55,7 @@ function _drawLegend( chart ) {
 
   const labelTx = 'Map shading: <span class="type">' + legendTitle + '</span>';
   chart.renderer
-    .label( labelTx, 0, 30, null, null, null, true, false, 'legend-description' )
+    .label( labelTx, 0, 28, null, null, null, true, false, 'legend-description' )
     .add(legendText);
 
   // bar groups
